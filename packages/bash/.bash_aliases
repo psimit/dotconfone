@@ -184,4 +184,6 @@ function connect_smarc_board() {
 
 #Common places of interest
 alias smarc=connect_smarc_board
-
+alias chrome='google-chrome --proxy-pac-url=http://132.186.192.192/proxy.pac'
+alias work='cd /media/sf_work'
+alias personal='cd /media/sf_personal'

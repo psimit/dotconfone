@@ -1,0 +1,16 @@
+[user]
+	name = Simit Pradhan
+	email = Simit.Pradhan@siemens.com
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	ci = commit
+	last = log -1 HEAD
+	lgr = log --graph --decorate
+	ll = log --oneline --graph --all --decorate=short --color=always
+[color "status"]
+	untracked = magenta
+[core]
+	autocrlf = input
+	editor = vim

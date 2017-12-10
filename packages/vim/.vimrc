@@ -1,4 +1,4 @@
-" Global Settings
+    " Global Settings
 set nocompatible       " We don't want vi compatibility.
 set ttyfast
 set lazyredraw
@@ -17,6 +17,11 @@ set tildeop            " Enable using tilde to swap case
 set ruler              " Ruler on
 set nu                 " Line numbers on
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l/%L,%c\ %)%P
+set belloff=all        " No beeps on reaching beginning or end of line
+"set spell              " Enable spell-check
+set nobackup            " Do not create backup files on saving documents
+set noundofile          " Do not create the undo files with ~ extension
+set textwidth=80        " 80 characters per line
 
 " Search
 set incsearch  " show 'best match so far' as you type
@@ -25,8 +30,8 @@ set ignorecase " ignores case of letters on searches
 set smartcase  " Override 'ignorecase' if the search pattern has upper case
 
 " Font
-set guifont=mononoki\ 10,Monaco\ 11,Monospace\ 11
-set guifont=mononoki\ 10,Monaco\ 11,DejaVu\ Sans\ Mono\ 11,Monospace\ 11
+set guifont=mononoki\ 9,Monaco\ 9,Monospace\ 9
+set guifont=mononoki\ 9,Monaco\ 9,DejaVu\ Sans\ Mono\ 9,Monospace\ 9
 
 execute pathogen#infect()
 execute pathogen#helptags()
@@ -265,11 +270,12 @@ set listchars=tab:·\ ,space:\ ,trail:➝
 " Most modern terminals now use this formatting and show colors in HD
 set t_Co=256
 
-colorscheme noblesse_redux
+"colorscheme noblesse_redux
+"colorscheme koehler
 "colorscheme csg
 "colorscheme candycode
 "colorscheme asu1dark
-"colorscheme torte
+colorscheme torte
 "colorscheme spring-night
 "colorscheme wombat256
 
