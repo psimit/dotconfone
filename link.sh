@@ -16,6 +16,7 @@
 #    * `.vim/`
 #    * `.bashrc`
 #    * `.bash_aliases`
+#    * `.gitconfig`
 #
 # The existing files, if not already linked are copied as
 # `file.bak` and then links are created to the managed

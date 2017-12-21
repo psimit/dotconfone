@@ -16,6 +16,7 @@ set directory=~/.vim/
 set tildeop            " Enable using tilde to swap case
 set ruler              " Ruler on
 set nu                 " Line numbers on
+set relativenumber     " show relative line numbers
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l/%L,%c\ %)%P
 set belloff=all        " No beeps on reaching beginning or end of line
 "set spell              " Enable spell-check
@@ -203,6 +204,10 @@ autocmd Syntax cpp call EnhanceCppSyntax()
 
 autocmd FileType python nnoremap <buffer> [[ ?^class\\|^\s*def<CR>
 autocmd FileType python nnoremap <buffer> ]] /^class\\|^\s*def<CR>
+" Commenting and uncommenting in matlab scripts
+autocmd FileType matlab noremap <silent> <C-r> :s/^/%\t/g<CR>
+autocmd FileType matlab vnoremap <silent> <C-t> :s/^%//g \| '<,'><<CR><CR>
+autocmd FileType matlab nnoremap <silent> <C-t> :s/^%//g \| <<CR><CR>
 
 "F9/10/11 -> Compile/Run/QuickfixWindow
 "autocmd FileType  c,cpp   map <F9>  <esc>:w<CR>:!clear; echo Compiling %;<CR>:make %:r<CR>
