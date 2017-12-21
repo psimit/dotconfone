@@ -4,7 +4,7 @@
 " Last Changed: 2010 May 19
 
 if exists("b:did_ftplugin")
-  finish
+    finish
 endif
 let b:did_ftplugin = 1
 
