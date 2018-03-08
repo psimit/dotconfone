@@ -158,3 +158,25 @@ function finf() {
   echo find $helper "$@" -type f -exec grep -EHni --color=auto "$key" {} \;
   find $helper "$@" -type f -exec grep -EHni --color=auto "$key" {} \;
 }
+
+########## Proxy server #############
+function set_proxy() {
+    export http_proxy=http://194.138.0.25:9400
+    export https_proxy=$http_proxy
+    export HTTP_PROXY=$http_proxy
+    export HTTPS_PROXY=$http_proxy
+    export ftp_proxy=$http_proxy
+    export rsync_proxy=$http_proxy
+    export no_proxy="localhost,127.0.0.1,localaddress,.siemens.com"
+}
+function unset_proxy() {
+    unset http_proxy
+    unset https_proxy
+    unset HTTP_PROXY
+    unset HTTPS_PROXY
+    unset ftp_proxy
+    unset rsync_proxy
+}
+
+#export -f unset_proxy
+

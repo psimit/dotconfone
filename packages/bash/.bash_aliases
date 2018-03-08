@@ -182,8 +182,34 @@ function connect_smarc_board() {
     $cmd
 }
 
+ip_address_rpi='172.16.16.11'
+
+function send_to_pi() {
+    case $# in
+        0 ) cmd="scp -r * pi@$ip_address_rpi:~/stmExpt";;
+        1 ) cmd="scp -r $1 pi@$ip_address_rpi:~/stmExpt";;
+        2 ) cmd="scp -r $1 pi@$ip_address_rpi:$2";;
+    esac
+    echo $cmd
+    $cmd
+}
+
+function get_from_pi() {
+    if [ $# -eq 0 ]; then
+        echo "Specify which file to get from pi"
+    else
+        case $# in
+            1 ) cmd="scp -r pi@$ip_address_rpi:$1 .";;
+            2 ) cmd="scp -r pi@$ip_address_rpi:$1 $2";;
+        esac
+        echo $cmd
+        $cmd
+    fi
+}
+
 #Common places of interest
 alias smarc=connect_smarc_board
+alias rpi="ssh pi@$ip_address_rpi"
 alias chrome='google-chrome --proxy-pac-url=http://132.186.192.192/proxy.pac'
 alias work='cd /media/sf_work'
 alias personal='cd /media/sf_personal'

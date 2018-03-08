@@ -16,7 +16,7 @@ set directory=~/.vim/
 set tildeop            " Enable using tilde to swap case
 set ruler              " Ruler on
 set nu                 " Line numbers on
-set relativenumber     " show relative line numbers
+"set relativenumber     " show relative line numbers
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l/%L,%c\ %)%P
 set belloff=all        " No beeps on reaching beginning or end of line
 "set spell              " Enable spell-check
@@ -209,6 +209,11 @@ autocmd FileType matlab noremap <silent> <C-r> :s/^/%\t/g<CR>
 autocmd FileType matlab vnoremap <silent> <C-t> :s/^%//g \| '<,'><<CR><CR>
 autocmd FileType matlab nnoremap <silent> <C-t> :s/^%//g \| <<CR><CR>
 
+" Commenting and uncommenting in python scripts
+autocmd FileType python noremap <silent> <C-r> :s/^/#/g<CR>
+autocmd FileType python vnoremap <silent> <C-t> :s/^\(\s*\)#/\1/g<CR>
+autocmd FileType python nnoremap <silent> <C-t> :s/^\(\s*\)#/\1/g<CR>
+
 "F9/10/11 -> Compile/Run/QuickfixWindow
 "autocmd FileType  c,cpp   map <F9>  <esc>:w<CR>:!clear; echo Compiling %;<CR>:make %:r<CR>
 "autocmd FileType  c,cpp   map <F10> <esc>:!clear; echo Running %; ./%:r<CR>
@@ -300,4 +305,8 @@ nmap <Leader>t <Plug>(easymotion-next)
 nmap <Leader>T <Plug>(easymotion-prev)
 nmap <Leader><C-]> :TagbarToggle<CR>
 
-
+"set runtimepath-=~/.vim/bundle/vim-r-plugin2
+set runtimepath-=~/.vim/bundle/vim-r-plugin2/after
+set runtimepath-=~/.vim/bundle/FuzzyFinder
+set runtimepath-=~/.vim/bundle/nerdtree
+set runtimepath-=~/.vim/bundle/xptemplate
