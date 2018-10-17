@@ -192,6 +192,12 @@ function send_to_pi() {
     esac
     echo $cmd
     $cmd
+
+    if [ $# -eq 0 ]; then
+        cmd="ssh pi@$ip_address_rpi ""find /home/pi/stmExpt -name '*.py' | xargs -I % sh -c 'python -m py_compile % && rm % ;'"""
+        echo "$cmd"
+        $cmd
+    fi
 }
 
 function get_from_pi() {
@@ -213,3 +219,9 @@ alias rpi="ssh pi@$ip_address_rpi"
 alias chrome='google-chrome --proxy-pac-url=http://132.186.192.192/proxy.pac'
 alias work='cd /media/sf_work'
 alias personal='cd /media/sf_personal'
+alias timesync='sudo /usr/sbin/VBoxService --timesync-set-start'
+
+# Docker functions
+function dr() {
+  docker run -it --rm -v ${PWD}:/work -w /work $@
+}

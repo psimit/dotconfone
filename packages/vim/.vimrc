@@ -35,16 +35,16 @@ set guifont=mononoki\ 9,Monaco\ 9,Monospace\ 9
 set guifont=mononoki\ 9,Monaco\ 9,DejaVu\ Sans\ Mono\ 9,Monospace\ 9
 
 execute pathogen#infect()
-execute pathogen#helptags()
+"execute pathogen#helptags()
 
 " Tabs and Indentation
 set expandtab
 set smarttab
 set smartindent   " smart indent of code - indent after opening '{',
 set autoindent    " Copy indent from current line when starting a new line
-set shiftwidth=4  " Number of spaces to use for each step of (auto)indent
-set tabstop=4     " Number of spaces that a <Tab> in the file counts for.
-set softtabstop=4 " Backspace the proper number of spaces
+set shiftwidth=2  " Number of spaces to use for each step of (auto)indent
+set tabstop=2     " Number of spaces that a <Tab> in the file counts for.
+set softtabstop=2 " Backspace the proper number of spaces
 set shiftround    " Round indent to multiple of 'shiftwidth'
 
 " Wrapping
@@ -204,6 +204,7 @@ autocmd Syntax cpp call EnhanceCppSyntax()
 
 autocmd FileType python nnoremap <buffer> [[ ?^class\\|^\s*def<CR>
 autocmd FileType python nnoremap <buffer> ]] /^class\\|^\s*def<CR>
+
 " Commenting and uncommenting in matlab scripts
 autocmd FileType matlab noremap <silent> <C-r> :s/^/%\t/g<CR>
 autocmd FileType matlab vnoremap <silent> <C-t> :s/^%//g \| '<,'><<CR><CR>
@@ -213,6 +214,11 @@ autocmd FileType matlab nnoremap <silent> <C-t> :s/^%//g \| <<CR><CR>
 autocmd FileType python noremap <silent> <C-r> :s/^/#/g<CR>
 autocmd FileType python vnoremap <silent> <C-t> :s/^\(\s*\)#/\1/g<CR>
 autocmd FileType python nnoremap <silent> <C-t> :s/^\(\s*\)#/\1/g<CR>
+
+" Commenting and uncommenting in tex files
+autocmd FileType tex noremap <silent> <C-r> :s/^/%/g<CR>
+autocmd FileType tex vnoremap <silent> <C-t> :s/^\(\s*\)%/\1/g<CR>
+autocmd FileType tex nnoremap <silent> <C-t> :s/^\(\s*\)%/\1/g<CR>
 
 "F9/10/11 -> Compile/Run/QuickfixWindow
 "autocmd FileType  c,cpp   map <F9>  <esc>:w<CR>:!clear; echo Compiling %;<CR>:make %:r<CR>

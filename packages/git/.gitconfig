@@ -14,3 +14,4 @@
 [core]
 	autocrlf = input
 	editor = vim
+

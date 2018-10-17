@@ -161,13 +161,14 @@ function finf() {
 
 ########## Proxy server #############
 function set_proxy() {
-    export http_proxy=http://194.138.0.25:9400
-    export https_proxy=$http_proxy
+    export http_proxy="http://194.138.0.25:9400"
+    export https_proxy="https://194.138.0.25:9400"
     export HTTP_PROXY=$http_proxy
-    export HTTPS_PROXY=$http_proxy
+    export HTTPS_PROXY=$https_proxy
     export ftp_proxy=$http_proxy
     export rsync_proxy=$http_proxy
-    export no_proxy="localhost,127.0.0.1,localaddress,.siemens.com"
+    export no_proxy="localhost,127.0.0.1,localaddress,.siemens.com,.siemens.de,.siemens.io"
+    proxyme -so --host=194.138.0.25 --port=9400
 }
 function unset_proxy() {
     unset http_proxy
@@ -176,7 +177,8 @@ function unset_proxy() {
     unset HTTPS_PROXY
     unset ftp_proxy
     unset rsync_proxy
+    proxyme -d
 }
 
 #export -f unset_proxy
-
+LS_COLORS="ow=01;34"
