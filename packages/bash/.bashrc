@@ -168,7 +168,9 @@ function set_proxy() {
     export ftp_proxy=$http_proxy
     export rsync_proxy=$http_proxy
     export no_proxy="localhost,127.0.0.1,localaddress,.siemens.com,.siemens.de,.siemens.io"
-    proxyme -so --host=194.138.0.25 --port=9400
+    sudo cp ~/.docker/http-proxy.conf /etc/systemd/system/docker.service.d \
+      && sudo systemctl daemon-reload \
+      && sudo systemctl restart docker
 }
 function unset_proxy() {
     unset http_proxy
@@ -177,8 +179,28 @@ function unset_proxy() {
     unset HTTPS_PROXY
     unset ftp_proxy
     unset rsync_proxy
-    proxyme -d
+    sudo rm /etc/systemd/system/docker.service.d/http-proxy.conf \
+      && sudo systemctl daemon-reload \
+      && sudo systemctl restart docker
 }
 
 #export -f unset_proxy
 LS_COLORS="ow=01;34"
+function add_ssh_keys() {
+  count=$(ssh-add -L | grep -c /home/one/.ssh/id_rsa)
+  if [ $count -eq 0 ]; then
+    ssh-add
+  fi
+}
+add_ssh_keys
+
+#### DTMU AWS ####
+function add_dtmu_pem() {
+  count=$(ssh-add -L | grep -c dtmu-prod.pem)
+  if [ $count -eq 0 ]; then
+    ssh-add -k ~/.ssh/dtmu-prod.pem
+  fi
+}
+add_dtmu_pem
+export EC2='ec2-user@13.233.161.153'
+#export EC2='ec2-user@13.235.245.86'

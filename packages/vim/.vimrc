@@ -8,7 +8,7 @@ set mouse=a            " Enable mouse usage (all modes) in terminals
 set mousehide          " Hide mouse after chars typed
 set encoding=utf-8     " you really should be using utf-8 now
 set termencoding=utf-8 " ditto
-set clipboard+=unnamed " Yanks go on clipboard instead.
+set clipboard+=unnamedplus " Yanks go on clipboard instead.
 set history=10000      " Number of things to remember in history.
 set timeoutlen=250     " Time to wait after ESC (default causes an annoying delay)
 set laststatus=2       " Always show status line.
@@ -206,17 +206,22 @@ autocmd FileType python nnoremap <buffer> [[ ?^class\\|^\s*def<CR>
 autocmd FileType python nnoremap <buffer> ]] /^class\\|^\s*def<CR>
 
 " Commenting and uncommenting in matlab scripts
-autocmd FileType matlab noremap <silent> <C-r> :s/^/%\t/g<CR>
+autocmd FileType matlab noremap <silent> <C-e> :s/^/%\t/g<CR>
 autocmd FileType matlab vnoremap <silent> <C-t> :s/^%//g \| '<,'><<CR><CR>
 autocmd FileType matlab nnoremap <silent> <C-t> :s/^%//g \| <<CR><CR>
 
+" Commenting and uncommenting in javascript
+autocmd FileType javascript noremap <silent> <C-e> :s/^/\/\//g<CR>
+autocmd FileType javascript vnoremap <silent> <C-t> :s/^\(\s*\)\/\//\1/g<CR>
+autocmd FileType javascript nnoremap <silent> <C-t> :s/^\(\s*\)\/\//\1/g<CR>
+
 " Commenting and uncommenting in python scripts
-autocmd FileType python noremap <silent> <C-r> :s/^/#/g<CR>
+autocmd FileType python noremap <silent> <C-e> :s/^/#/g<CR>
 autocmd FileType python vnoremap <silent> <C-t> :s/^\(\s*\)#/\1/g<CR>
 autocmd FileType python nnoremap <silent> <C-t> :s/^\(\s*\)#/\1/g<CR>
 
 " Commenting and uncommenting in tex files
-autocmd FileType tex noremap <silent> <C-r> :s/^/%/g<CR>
+autocmd FileType tex noremap <silent> <C-e> :s/^/%/g<CR>
 autocmd FileType tex vnoremap <silent> <C-t> :s/^\(\s*\)%/\1/g<CR>
 autocmd FileType tex nnoremap <silent> <C-t> :s/^\(\s*\)%/\1/g<CR>
 
@@ -292,6 +297,7 @@ set t_Co=256
 "colorscheme candycode
 "colorscheme asu1dark
 colorscheme torte
+"colorscheme elflord
 "colorscheme spring-night
 "colorscheme wombat256
 
@@ -300,11 +306,17 @@ imap <C-Right> <esc>ea
 imap <C-Left> <esc>bi
 
 autocmd FileType  c,cpp,h,hpp,cxx   setlocal cc=81 | setlocal shiftwidth=2 | setlocal tabstop=2 | setlocal softtabstop=2 | set noic
-autocmd FileType  python            setlocal cc=81 | set noic
+autocmd FileType  python            setlocal cc=81 | setlocal shiftwidth=2 | setlocal tabstop=2 | setlocal softtabstop=2 | set noic
 autocmd FileType  conque_term       setlocal nolist
 
-let g:jedi#force_py_version = 3
-let g:neocomplete#enable_at_startup = 1
+"let g:jedi#force_py_version = 3
+let g:jedi#auto_initialization = 0
+let g:jedi#popup_on_dot = 0
+"let g:neocomplete#enable_at_startup = 1
+"
+
+" TabNine
+"set rtp+=/media/sf_personal/dotconfone/packages/vim/.vim/bundle/tabnine-vim
 
 nmap <Leader>z <Plug>(easymotion-sn)
 nmap <Leader>t <Plug>(easymotion-next)

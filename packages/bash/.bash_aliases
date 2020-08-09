@@ -217,6 +217,7 @@ function get_from_pi() {
 alias smarc=connect_smarc_board
 alias rpi="ssh pi@$ip_address_rpi"
 alias chrome='google-chrome --proxy-pac-url=http://132.186.192.192/proxy.pac'
+alias chromium_proxy='chromium --proxy-pac-url=http://proxyconf-aae-in.siemens.co.in:81/proxyin.pac'
 alias work='cd /media/sf_work'
 alias personal='cd /media/sf_personal'
 alias timesync='sudo /usr/sbin/VBoxService --timesync-set-start'
@@ -225,3 +226,4 @@ alias timesync='sudo /usr/sbin/VBoxService --timesync-set-start'
 function dr() {
   docker run -it --rm -v ${PWD}:/work -w /work $@
 }
+alias matlab='docker run -it --rm -e MATLAB_USER=z003uuup matlab:R2018b matlab -nodisplay'
