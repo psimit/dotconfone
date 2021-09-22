@@ -123,7 +123,7 @@ fi
 eval "$(pandoc --bash-completion)"
 
 xhost + > /dev/null 2> /dev/null
-#export PS1="[\`printf %3d \$?\`]$PS1"
+source ~/.bash_git
 export PS1="\[\033[01;35m\]\`echo \$(__git_ps1)\`\[\033[00m\]$PS1"
 export PS1="\[\033[01;33m\][\`printf %3d \$?\`]\[\033[00m\] $PS1"
 
@@ -138,10 +138,6 @@ export HISTTIMEFORMAT="%b %d %a %T "
 ## Don't Overwrite. Append to bash history.
 shopt -s histappend
 export PYTHONSTARTUP=~/.pythonrc
-
-function rm() {
-  command rm $@ -I
-}
 
 function finf() {
   if [ $# == 1 ]; then
@@ -185,7 +181,6 @@ function unset_proxy() {
 }
 
 #export -f unset_proxy
-LS_COLORS="ow=01;34"
 function add_ssh_keys() {
   count=$(ssh-add -L | grep -c /home/one/.ssh/id_rsa)
   if [ $count -eq 0 ]; then
@@ -201,6 +196,5 @@ function add_dtmu_pem() {
     ssh-add -k ~/.ssh/dtmu-prod.pem
   fi
 }
-add_dtmu_pem
+#add_dtmu_pem
 export EC2='ec2-user@13.233.161.153'
-#export EC2='ec2-user@13.235.245.86'

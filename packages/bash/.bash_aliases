@@ -10,6 +10,7 @@ fi
 
 #Make pgrep list process names with full command line
 alias pgrep='pgrep -fl'
+alias ls="ls -G"
 
 #Use Extended Regular Expressions!
 # makes auto-completion of bash messy in some cases!
@@ -17,7 +18,7 @@ alias pgrep='pgrep -fl'
 #alias sed='sed -r'
 
 # some more ls aliases
-alias ll="ls -CFlh -Itags -I'cscope*'"
+alias ll="ls -CFlh"
 function lsd
 {
     if [ -z "$1" ]
@@ -27,10 +28,10 @@ function lsd
         find $1 -maxdepth 1 -type d -printf '%f\n' | sed -n '2,$p'
     fi
 }
-alias la='ls -ACh --classify'
-alias lc="ls -Ch --classify -Itags -I'cscope*'"
-alias lal='ls -lAh --classify'
-alias l="ls -Ch --classify -Itags -I'cscope*'"
+alias la='ls -ACh'
+alias lc="ls -Ch"
+alias lal='ls -lAh'
+alias l="ls -Ch"
 alias t='tree -aC'
 alias td='tree -daC'
 
@@ -42,15 +43,15 @@ export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 
 
 # make commands verbose
-alias rm='rm -Iv'
+alias rm='rm -v'
 alias cp='cp -v'
 alias mv='mv -v'
 alias mkdir='mkdir -p -v'
 alias rmdir='rmdir -p -v'
 
 # human readable!
-alias df='df -Th'
-alias du='du'
+alias df='df -h'
+alias du='du -sh'
 
 # terminal friendly application aliases
 alias vlc='vlc -I ncurses'
