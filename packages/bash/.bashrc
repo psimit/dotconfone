@@ -123,7 +123,7 @@ fi
 eval "$(pandoc --bash-completion)"
 
 xhost + > /dev/null 2> /dev/null
-source ~/.bash_git
+source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
 export PS1="\[\033[01;35m\]\`echo \$(__git_ps1)\`\[\033[00m\]$PS1"
 export PS1="\[\033[01;33m\][\`printf %3d \$?\`]\[\033[00m\] $PS1"
 
@@ -182,19 +182,10 @@ function unset_proxy() {
 
 #export -f unset_proxy
 function add_ssh_keys() {
-  count=$(ssh-add -L | grep -c /home/one/.ssh/id_rsa)
+  count=$(ssh-add -L | grep -c /Users/psimit/.ssh/id_rsa)
   if [ $count -eq 0 ]; then
     ssh-add
   fi
 }
 add_ssh_keys
 
-#### DTMU AWS ####
-function add_dtmu_pem() {
-  count=$(ssh-add -L | grep -c dtmu-prod.pem)
-  if [ $count -eq 0 ]; then
-    ssh-add -k ~/.ssh/dtmu-prod.pem
-  fi
-}
-#add_dtmu_pem
-export EC2='ec2-user@13.233.161.153'

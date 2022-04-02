@@ -1,11 +1,13 @@
 [user]
 	name = Simit Pradhan
-	email = Simit.Pradhan@siemens.com
+	email = simit.pradhan@miko.ai
 [alias]
 	co = checkout
 	st = status
 	br = branch
 	ci = commit
+	cm = commit -m
+	cam = commit -am
 	last = log -1 HEAD
 	lgr = log --graph --decorate
 	ll = log --oneline --graph --all --decorate=short --color=always
