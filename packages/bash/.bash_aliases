@@ -171,18 +171,6 @@ alias mysource="find \`pwd\` -regex '.*\.[i,c,h][n,p]?[l,p]?$'"
 unalias vi
 alias fix='reset; stty sane; tput rs1; clear; echo -e "\033c"'
 
-function connect_smarc_board() {
-    case $# in
-        0 ) cmd="ssh root@192.168.151.57";;
-        1 ) cmd="ssh root@192.168.151.$1";;
-        2 ) cmd="ssh root@192.168.$1.$2";;
-        3 ) cmd="ssh root@192.$1.$2.$3";;
-        4 ) cmd="ssh root@$1.$2.$3.$4";;
-    esac
-    echo $cmd
-    $cmd
-}
-
 ip_address_rpi='172.16.16.11'
 
 function send_to_pi() {
@@ -217,10 +205,7 @@ function get_from_pi() {
 #Common places of interest
 alias smarc=connect_smarc_board
 alias rpi="ssh pi@$ip_address_rpi"
-alias chrome='google-chrome --proxy-pac-url=http://132.186.192.192/proxy.pac'
 alias chromium_proxy='chromium --proxy-pac-url=http://proxyconf-aae-in.siemens.co.in:81/proxyin.pac'
-alias work='cd /media/sf_work'
-alias personal='cd /media/sf_personal'
 alias timesync='sudo /usr/sbin/VBoxService --timesync-set-start'
 
 # Docker functions
@@ -228,3 +213,4 @@ function dr() {
   docker run -it --rm -v ${PWD}:/work -w /work $@
 }
 alias matlab='docker run -it --rm -e MATLAB_USER=z003uuup matlab:R2018b matlab -nodisplay'
+alias connect_vpn='sudo openvpn --config /Users/psimit/.vpn-connect/config.ovpn --auth-user-pass /Users/psimit/.vpn-connect/up'
