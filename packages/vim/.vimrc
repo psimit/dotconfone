@@ -32,7 +32,7 @@ set smartcase  " Override 'ignorecase' if the search pattern has upper case
 
 " Font
 set guifont=mononoki\ 9,Monaco\ 9,Monospace\ 9
-set guifont=mononoki\ 9,Monaco\ 9,DejaVu\ Sans\ Mono\ 9,Monospace\ 9
+set guifont=JetBrains\ Mono\ 11,mononoki\ 9,Monaco\ 9,DejaVu\ Sans\ Mono\ 9,Monospace\ 9
 
 execute pathogen#infect()
 "execute pathogen#helptags()
@@ -195,6 +195,9 @@ let g:tex_flavor='latex'
 " Python formatting
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
+" Set filetypes
+autocmd BufRead,BufNewFile *.launch set filetype=xml
+
 " Highlight the methodnames in C++
 function! EnhanceCppSyntax()
   syn match cppFuncDef "::\~\?\zs\h\w*\ze([^)]*\()\s*\(const\)\?\)\?$"
@@ -292,11 +295,11 @@ set listchars=tab:·\ ,space:\ ,trail:➝
 set t_Co=256
 
 "colorscheme noblesse_redux
-"colorscheme koehler
+colorscheme koehler
 "colorscheme csg
 "colorscheme candycode
 "colorscheme asu1dark
-colorscheme torte
+"colorscheme torte
 "colorscheme elflord
 "colorscheme spring-night
 "colorscheme wombat256

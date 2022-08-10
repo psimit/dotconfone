@@ -123,7 +123,9 @@ fi
 eval "$(pandoc --bash-completion)"
 
 xhost + > /dev/null 2> /dev/null
-source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
+if [ "$(uname -s)" == "Darwin" ]; then
+  source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
+fi
 export PS1="\[\033[01;35m\]\`echo \$(__git_ps1)\`\[\033[00m\]$PS1"
 export PS1="\[\033[01;33m\][\`printf %3d \$?\`]\[\033[00m\] $PS1"
 
@@ -188,3 +190,7 @@ function add_ssh_keys() {
   fi
 }
 add_ssh_keys
+
+if [ "$(uname -s)" == "Linux" ]; then
+  source /opt/ros/noetic/setup.bash
+fi

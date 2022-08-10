@@ -11,6 +11,9 @@ fi
 #Make pgrep list process names with full command line
 alias pgrep='pgrep -fl'
 alias ls="ls -G"
+if [ "$(uname -s)" == "Linux" ]; then
+  alias ls="ls --color -G"
+fi
 
 #Use Extended Regular Expressions!
 # makes auto-completion of bash messy in some cases!
