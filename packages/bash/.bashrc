@@ -200,17 +200,22 @@ ADDR_KBD="E9:24:11:B2:36:DB"
 
 function workstation_mode() {
   if [ "$1" == "4K" ]; then
+    xrandr --output eDP-1 --mode 1600x1024
     xrandr --output HDMI-1 --mode 3840x2160 --scale 0.75x0.75 --right-of eDP-1
   else
+    xrandr --output eDP-1 --mode 1600x1024
     xrandr --output HDMI-1 --mode 2560x1440 --scale 1x1 --right-of eDP-1
   fi
   bluetoothctl connect ${ADDR_MAGIC_MOUSE}
-  xinput set-prop "Simit's Magic Mouse" "libinput Natural Scrolling Enabled" 1
+  sleep 3
+  mouse_id=$(xinput | grep "Magic Mouse" | sed -nE 's/.*id=([0-9]+).*/\1/p')
+  xinput set-prop ${mouse_id} "libinput Natural Scrolling Enabled" 1
+  xinput set-prop ${mouse_id} "libinput Accel Speed" -0.5
 }
 
 function laptop_mode() {
   xrandr --output HDMI-1 --off
-  bluetoothctl disconnect ${ADDR_MAGIC_MOUSE}
+  xrandr --output eDP-1 --mode 1920x1200
 }
 
 export PATH=$PATH:/home/psimit/third-party/mips-linux-gnu-ingenic-gcc7.2.0-glibc2.29-fp64/bin
