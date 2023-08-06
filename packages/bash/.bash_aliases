@@ -216,4 +216,4 @@ function dr() {
   docker run -it --rm -v ${PWD}:/work -w /work $@
 }
 alias matlab='docker run -it --rm -e MATLAB_USER=z003uuup matlab:R2018b matlab -nodisplay'
-alias connect_vpn='sudo openvpn --config /Users/psimit/.vpn-connect/config.ovpn --auth-user-pass /Users/psimit/.vpn-connect/up'
+alias connect_vpn='sudo openvpn --config ~/.vpn-connect/config.ovpn --auth-user-pass ~/.vpn-connect/up'

@@ -1,7 +1,9 @@
 [user]
 	name = Simit Pradhan
 	email = simit.pradhan@miko.ai
+	signingKey = /home/psimit/.ssh/id_rsa.pub
 [alias]
+  commit = commit -S
 	co = checkout
 	st = status
 	br = branch
@@ -24,3 +26,7 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[credential]
+	helper = store
+[gpg]
+	format = ssh
