@@ -195,16 +195,21 @@ if [ "$(uname -s)" == "Linux" ]; then
   source /opt/ros/noetic/setup.bash
 fi
 
-function project_screen() {
+ADDR_MAGIC_MOUSE="BC:D0:74:CE:23:50"
+
+function workstation_mode() {
   if [ "$1" == "4K" ]; then
     xrandr --output HDMI-1 --mode 3840x2160 --scale 0.75x0.75 --right-of eDP-1
   else
     xrandr --output HDMI-1 --mode 2560x1440 --scale 1x1 --right-of eDP-1
   fi
+  bluetoothctl connect ${ADDR_MAGIC_MOUSE}
+  xinput set-prop "Simit's Magic Mouse" "libinput Natural Scrolling Enabled" 1
 }
 
-function single_screen() {
+function laptop_mode() {
   xrandr --output HDMI-1 --off
+  bluetoothctl disconnect ${ADDR_MAGIC_MOUSE}
 }
 
 export PATH=$PATH:/home/psimit/third-party/mips-linux-gnu-ingenic-gcc7.2.0-glibc2.29-fp64/bin

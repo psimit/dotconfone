@@ -30,3 +30,5 @@
 	helper = store
 [gpg]
 	format = ssh
+[http]
+	sslverify = true
