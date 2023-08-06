@@ -196,27 +196,15 @@ if [ "$(uname -s)" == "Linux" ]; then
 fi
 
 function project_screen() {
-  if [ "$1" == "2K" ]; then
-    xrandr -q | grep "2K_Acer_60" > /dev/null
-    if [ $? -ne 0 ]; then
-      xrandr --newmode "2K_Acer_60" 312.00  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
-      xrandr --addmode HDMI-A-0 "2K_Acer_60"
-    fi
-    xrandr --output HDMI-A-0 --mode "2K_Acer_60" --scale 1x1 --left-of eDP
+  if [ "$1" == "4K" ]; then
+    xrandr --output HDMI-1 --mode 3840x2160 --scale 0.75x0.75 --right-of eDP-1
   else
-    xrandr -q | grep "4K_Acer_30" > /dev/null
-    if [ $? -ne 0 ]; then
-      xrandr --newmode "4K_Acer_30" 339.57  3840 4080 4496 5152  2160 2161 2164 2197  -HSync +Vsync
-      xrandr --addmode HDMI-A-0 "4K_Acer_30"
-    fi
-    xrandr --output HDMI-A-0 --mode "4K_Acer_30" --scale 0.75x0.75 --left-of eDP
-    # xrandr --output HDMI-A-0 --mode "4K_Acer_30" --scale 1x1 --left-of eDP
+    xrandr --output HDMI-1 --mode 2560x1440 --scale 1x1 --right-of eDP-1
   fi
 }
 
 function single_screen() {
-  xrandr --output HDMI-A-0 --off
+  xrandr --output HDMI-1 --off
 }
 
 export PATH=$PATH:/home/psimit/mips/bin
-#export PATH=$PATH:/home/psimit/Ingenic_T40_INDUS/SDK_20221128/Zeratul_T40_Release_20220526/tools/toolchain/gcc_720/mips-linux-gnu-ingenic-gcc7.2.0-glibc2.29-fp64/bin
