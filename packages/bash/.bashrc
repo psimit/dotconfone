@@ -207,4 +207,4 @@ function single_screen() {
   xrandr --output HDMI-1 --off
 }
 
-export PATH=$PATH:/home/psimit/mips/bin
+export PATH=$PATH:/home/psimit/third-party/mips-linux-gnu-ingenic-gcc7.2.0-glibc2.29-fp64/bin
