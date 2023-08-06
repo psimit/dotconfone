@@ -184,7 +184,7 @@ function unset_proxy() {
 
 #export -f unset_proxy
 function add_ssh_keys() {
-  count=$(ssh-add -L | grep -c /Users/psimit/.ssh/id_rsa)
+  count=$(ssh-add -L | grep -c /home/psimit/.ssh/id_rsa)
   if [ $count -eq 0 ]; then
     ssh-add
   fi
@@ -196,6 +196,7 @@ if [ "$(uname -s)" == "Linux" ]; then
 fi
 
 ADDR_MAGIC_MOUSE="BC:D0:74:CE:23:50"
+ADDR_KBD="E9:24:11:B2:36:DB"
 
 function workstation_mode() {
   if [ "$1" == "4K" ]; then

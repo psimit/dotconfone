@@ -12,17 +12,17 @@
 set $mod Mod4
 
 # Enable Tap-to-click on the touchpad and natural scrolling
-exec xinput set-prop "SYNA30D9:00 06CB:CEA4 Touchpad" "libinput Tapping Enabled" 1
-exec xinput set-prop "SYNA30D9:00 06CB:CEA4 Touchpad" "libinput Natural Scrolling Enabled" 1
-exec xinput set-prop "Simit's Magic Mouse" "libinput Natural Scrolling Enabled" 1
+exec_always xinput set-prop "SYNA30D9:00 06CB:CEA4 Touchpad" "libinput Tapping Enabled" 1
+exec_always xinput set-prop "SYNA30D9:00 06CB:CEA4 Touchpad" "libinput Natural Scrolling Enabled" 1
+exec_always xinput set-prop "Simit's Magic Mouse" "libinput Natural Scrolling Enabled" 1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:JetBrains\ Mono 11
+font pango:JetBrains Mono Regular 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font xft:JetBrains\ Mono 11
+font pango:JetBrains Mono Regular 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -141,7 +141,12 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'nohup killall i3-nagbar && i3session save && i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'nohup killall i3-nagbar && i3-msg exit'"
+bindsym $mod+Escape exec "i3lock -c 333333; systemctl suspend"
+# Lock screen
+bindsym $mod+l exec i3lock -c 333333
+exec_always --no-startup-id xautolock -time 15 -locker 'i3lock -c 333333'
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -192,16 +197,12 @@ bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl set 5%-
 
 
-# Lock screen
-bindsym $mod+l exec i3lock -c 333333
-exec_always --no-startup-id xautolock -time 15 -locker 'i3lock -c 333333'
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
         tray_output primary
-        font xft: JetBrains\ Mono 11px
+        font pango:JetBrains Mono Regular 10
         #mode hide
         modifier $mod
         position top
@@ -226,7 +227,9 @@ exec --no-startup-id nm-applet
 exec --no-startup-id mate-settings-daemon
 # Set background
 # exec_always --no-startup-id sh ~/.fehbg
-exec --no-startup-id /usr/libexec/gsd-xsettings
+# exec --no-startup-id /usr/libexec/gsd-xsettings
 #
 # Window switcher
 bindsym $mod+Tab exec rofi -show window -font "JetBrains Mono 11"
+
+popup_during_fullscreen smart
