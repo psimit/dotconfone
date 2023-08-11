@@ -207,10 +207,11 @@ function workstation_mode() {
     xrandr --output HDMI-1 --mode 2560x1440 --scale 1x1 --right-of eDP-1
   fi
   bluetoothctl connect ${ADDR_MAGIC_MOUSE}
-  sleep 3
+  sleep 1
   mouse_id=$(xinput | grep "Magic Mouse" | sed -nE 's/.*id=([0-9]+).*/\1/p')
   xinput set-prop ${mouse_id} "libinput Natural Scrolling Enabled" 1
   xinput set-prop ${mouse_id} "libinput Accel Speed" -0.5
+  xinput set-button-map ${mouse_id} 1 1
 }
 
 function laptop_mode() {

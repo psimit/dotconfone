@@ -144,12 +144,14 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# restore i3
+bindsym $mod+Shift+Return exec "i3session restore"
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'nohup killall i3-nagbar && i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'nohup killall i3-nagbar && i3session save && i3-msg exit'"
 bindsym $mod+Escape exec "i3lock -c 333333; systemctl suspend"
 # Lock screen
 bindsym $mod+l exec i3lock -c 333333
-exec_always --no-startup-id xautolock -time 15 -locker 'i3lock -c 333333'
+exec_always --no-startup-id xautolock -time 10 -notify 10 -locker 'i3lock -c 333333'
 
 
 # resize window (you can also use the mouse for that)
@@ -237,3 +239,4 @@ exec --no-startup-id mate-settings-daemon
 bindsym $mod+Tab exec rofi -show window -font "JetBrains Mono 11"
 
 popup_during_fullscreen smart
+bindsym Print exec --no-startup-id scrot -u -p '/home/psimit/%Y-%m-%d_$wx$h_scrot.png'
