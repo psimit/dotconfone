@@ -208,6 +208,7 @@ function workstation_mode() {
   fi
   bluetoothctl connect ${ADDR_MAGIC_MOUSE}
   sleep 1
+  upower -i /org/freedesktop/UPower/devices/mouse_hid_bcod0o74oceo23o50_battery
   mouse_id=$(xinput | grep "Magic Mouse" | sed -nE 's/.*id=([0-9]+).*/\1/p')
   xinput set-prop ${mouse_id} "libinput Natural Scrolling Enabled" 1
   xinput set-prop ${mouse_id} "libinput Accel Speed" -0.5
@@ -220,3 +221,4 @@ function laptop_mode() {
 }
 
 export PATH=$PATH:/home/psimit/third-party/mips-linux-gnu-ingenic-gcc7.2.0-glibc2.29-fp64/bin
+export BUILDKIT_COLORS=run=green:warning=yellow:error=red:cancel=cyan

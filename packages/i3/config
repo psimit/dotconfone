@@ -151,7 +151,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Escape exec "i3lock -c 333333; systemctl suspend"
 # Lock screen
 bindsym $mod+l exec i3lock -c 333333
-exec_always --no-startup-id xautolock -time 10 -notify 10 -locker 'i3lock -c 333333'
+exec_always --no-startup-id xautolock -time 10 -locker 'i3lock -c 333333'
 
 
 # resize window (you can also use the mouse for that)
