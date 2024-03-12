@@ -217,3 +217,4 @@ function dr() {
 }
 alias matlab='docker run -it --rm -e MATLAB_USER=z003uuup matlab:R2018b matlab -nodisplay'
 alias connect_vpn='sudo openvpn --config ~/.vpn-connect/config.ovpn --auth-user-pass ~/.vpn-connect/up'
+alias m='mplayer -fs -osdlevel 3'
