@@ -13,6 +13,7 @@
 	last = log -1 HEAD
 	lgr = log --graph --decorate
 	ll = log --oneline --graph --all --decorate=short --color=always
+	amend = commit --amend --no-edit
 [color "status"]
   added = green bold
   changed = red bold
@@ -32,3 +33,7 @@
 	format = ssh
 [http]
 	sslverify = true
+[rerere]
+	enabled = false
+[init]
+	defaultBranch = main
