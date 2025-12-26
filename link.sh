@@ -52,4 +52,5 @@ backup_and_link $HOME/.vim            $DCO_PATH/packages/vim/.vim
 backup_and_link $HOME/.bashrc         $DCO_PATH/packages/bash/.bashrc
 backup_and_link $HOME/.bash_aliases   $DCO_PATH/packages/bash/.bash_aliases
 backup_and_link $HOME/.gitconfig      $DCO_PATH/packages/git/.gitconfig
+backup_and_link $HOME/.tmux.conf      $DCO_PATH/packages/tmux/.tmux.conf
 

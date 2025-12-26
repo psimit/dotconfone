@@ -216,12 +216,24 @@ function workstation_mode() {
   xinput set-prop ${mouse_id} "libinput Natural Scrolling Enabled" 1
   xinput set-prop ${mouse_id} "libinput Accel Speed" -0.5
   xinput set-button-map ${mouse_id} 1 1
+  echo -1 | sudo tee /sys/module/usbcore/parameters/autosuspend
 }
 
 function laptop_mode() {
   xrandr --output HDMI-1 --off
   xrandr --output eDP-1 --mode 1920x1200
+  echo 2 | sudo tee /sys/module/usbcore/parameters/autosuspend
+}
+
+cursor() {
+  # Run the cursor command and suppress background process output completely
+  (nohup /home/psimit/third-party/Cursor-1.2.1-x86_64.AppImage "$@" >/dev/null 2>&1 &)
 }
 
 export PATH=$PATH:/home/psimit/third-party/mips-linux-gnu-ingenic-gcc7.2.0-glibc2.29-fp64/bin
 export BUILDKIT_COLORS=run=green:warning=yellow:error=red:cancel=cyan
+
+# Start tmux automatically
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
